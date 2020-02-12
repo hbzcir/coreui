@@ -30,16 +30,24 @@ const brandSuccess = getStyle('--success')
 const brandInfo = getStyle('--info')
 const brandWarning = getStyle('--warning')
 const brandDanger = getStyle('--danger')
+const companyName = ['문자','이메일','팩스','알림톡','푸시'];
+const borderColorInit = 'rgba(255,255,255,.55)';
 
 // Card Chart 1
 const cardChartData1 = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: brandPrimary,
-      borderColor: 'rgba(255,255,255,.55)',
-      data: [65, 59, 84, 84, 51, 55, 40],
+      label: '처리완료',
+      backgroundColor: 'rgba(255,255,255,.1)',
+      borderColor: borderColorInit,
+      data: [78, 81, 80, 45, 34, 12, 40],
+    },
+    {
+      label: '미처리',
+      backgroundColor: 'rgba(255,255,255,.1)',
+      borderColor: borderColorInit,
+      data: [178, 181, 180, 145, 134, 112, 140],
     },
   ],
 };
@@ -47,7 +55,10 @@ const cardChartData1 = {
 const cardChartOpts1 = {
   tooltips: {
     enabled: false,
-    custom: CustomTooltips
+    custom: CustomTooltips,
+    intersect: true,
+    mode: 'index',
+    position: 'nearest',
   },
   maintainAspectRatio: false,
   legend: {
@@ -56,24 +67,13 @@ const cardChartOpts1 = {
   scales: {
     xAxes: [
       {
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent',
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        },
-
-      }],
-    yAxes: [
-      {
         display: false,
-        ticks: {
-          display: false,
-          min: Math.min.apply(Math, cardChartData1.datasets[0].data) - 5,
-          max: Math.max.apply(Math, cardChartData1.datasets[0].data) + 5,
-        },
+        barPercentage: 0.6,
+      }],
+    yAxes: [{
+        display: false,
+        min: Math.min.apply(Math, cardChartData1.datasets[0].data) - 5,
+        max: Math.max.apply(Math, cardChartData1.datasets[0].data) + 5,
       }],
   },
   elements: {
@@ -81,9 +81,10 @@ const cardChartOpts1 = {
       borderWidth: 1,
     },
     point: {
-      radius: 4,
-      hitRadius: 10,
-      hoverRadius: 4,
+      radius: 2,
+        hitRadius: 10,
+        hoverRadius: 4,
+
     },
   }
 }
@@ -91,13 +92,13 @@ const cardChartOpts1 = {
 
 // Card Chart 2
 const cardChartData2 = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July','January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'My First dataset',
-      backgroundColor: brandInfo,
-      borderColor: 'rgba(255,255,255,.55)',
-      data: [1, 18, 9, 17, 34, 22, 11],
+      label: '처리완료',
+      backgroundColor: 'rgba(255,255,255,.2)',
+      borderColor: borderColorInit,
+      data: [1, 18, 9, 17, 34, 22, 11,1, 18, 9, 17, 34, 22, 11],
     },
   ],
 };
@@ -114,35 +115,25 @@ const cardChartOpts2 = {
   scales: {
     xAxes: [
       {
-        gridLines: {
-          color: 'transparent',
-          zeroLineColor: 'transparent',
-        },
-        ticks: {
-          fontSize: 2,
-          fontColor: 'transparent',
-        },
-
+        display: false,
+        barPercentage: 0.6,
       }],
     yAxes: [
       {
         display: false,
-        ticks: {
-          display: false,
-          min: Math.min.apply(Math, cardChartData2.datasets[0].data) - 5,
-          max: Math.max.apply(Math, cardChartData2.datasets[0].data) + 5,
-        },
+        min: Math.min.apply(Math, cardChartData2.datasets[0].data) - 5,
+        max: Math.max.apply(Math, cardChartData2.datasets[0].data) + 5,
       }],
   },
   elements: {
     line: {
-      tension: 0.00001,
       borderWidth: 1,
     },
-    point: {
-      radius: 4,
-      hitRadius: 10,
-      hoverRadius: 4,
+    point: { 
+        pointBackgroundColor: brandDanger,
+        radius: 2,
+        hitRadius: 10,
+        hoverRadius: 4,
     },
   },
 };
@@ -152,9 +143,9 @@ const cardChartData3 = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
-      label: 'My First dataset',
+      label: '처리완료',
       backgroundColor: 'rgba(255,255,255,.2)',
-      borderColor: 'rgba(255,255,255,.55)',
+      borderColor: borderColorInit,
       data: [78, 81, 80, 45, 34, 12, 40],
     },
   ],
@@ -173,36 +164,42 @@ const cardChartOpts3 = {
     xAxes: [
       {
         display: false,
+        barPercentage: 0.6,
       }],
-    yAxes: [
-      {
-        display: false,
-      }],
-  },
+      yAxes: [
+        {
+          display: false,
+          min: Math.min.apply(Math, cardChartData3.datasets[0].data) - 5,
+          max: Math.max.apply(Math, cardChartData3.datasets[0].data) + 5,
+        }],
+    },
   elements: {
     line: {
-      borderWidth: 2,
+      borderWidth: 1,
     },
-    point: {
-      radius: 0,
-      hitRadius: 10,
-      hoverRadius: 4,
+    point: { 
+        pointBackgroundColor: brandDanger,
+        radius: 2,
+        hitRadius: 10,
+        hoverRadius: 4,
     },
   },
 };
 
 // Card Chart 4
 const cardChartData4 = {
-  labels: ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
-  datasets: [
-    {
-      label: 'My First dataset',
-      backgroundColor: 'rgba(255,255,255,.3)',
-      borderColor: 'transparent',
-      data: [78, 81, 80, 45, 34, 12, 40, 75, 34, 89, 32, 68, 54, 72, 18, 98],
-    },
-  ],
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: '처리완료',
+        backgroundColor: 'rgba(255,255,255,.2)',
+        borderColor: borderColorInit,
+        data: [78, 81, 80, 45, 34, 12, 40],
+      },
+    ],
 };
+
+
 
 const cardChartOpts4 = {
   tooltips: {
@@ -219,12 +216,63 @@ const cardChartOpts4 = {
         display: false,
         barPercentage: 0.6,
       }],
-    yAxes: [
-      {
-        display: false,
-      }],
+      yAxes: [
+        {
+          display: false,
+          min: Math.min.apply(Math, cardChartData4.datasets[0].data) - 5,
+          max: Math.max.apply(Math, cardChartData4.datasets[0].data) + 5,
+        }],
+    },
+  elements: {
+    line: {
+      borderWidth: 1,
+    },
   },
 };
+
+// Card Chart 5
+const cardChartData5 = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [
+      {
+        label: '처리완료',
+        backgroundColor: 'rgba(255,255,255,.2)',
+        borderColor: borderColorInit,
+        data: [78, 81, 80, 45, 34, 12, 40],
+      },
+    ],
+};
+
+
+const cardChartOpts5 = {
+  tooltips: {
+    enabled: false,
+    custom: CustomTooltips
+  },
+  maintainAspectRatio: false,
+  legend: {
+    display: false,
+  },
+  scales: {
+    xAxes: [
+      {
+        display: false,
+        barPercentage: 0.6,
+      }],
+      yAxes: [
+        {
+          display: false,
+          min: Math.min.apply(Math, cardChartData4.datasets[0].data) - 5,
+          max: Math.max.apply(Math, cardChartData5.datasets[0].data) + 5,
+        }],
+    },
+  elements: {
+    line: {
+      borderWidth: 1,
+    },
+  },
+};
+
 
 // Social Box Chart
 const socialBoxData = [
@@ -241,7 +289,7 @@ const makeSocialBoxData = (dataSetNo) => {
     datasets: [
       {
         backgroundColor: 'rgba(255,255,255,.1)',
-        borderColor: 'rgba(255,255,255,.55)',
+        borderColor: borderColorInit,
         pointHoverBackgroundColor: '#fff',
         borderWidth: 2,
         data: dataset.data,
@@ -483,104 +531,82 @@ class Dashboard extends Component {
 
     return (
       <div className="animated fadeIn">
-        <Row>
+        <Row className="custom-grid-5">
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-info">
-              <CardBody className="pb-0">
-                <ButtonGroup className="float-right">
-                  <ButtonDropdown id='card1' isOpen={this.state.card1} toggle={() => { this.setState({ card1: !this.state.card1 }); }}>
-                    <DropdownToggle caret className="p-0" color="transparent">
-                      <i className="icon-settings"></i>
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>Action</DropdownItem>
-                      <DropdownItem>Another action</DropdownItem>
-                      <DropdownItem disabled>Disabled action</DropdownItem>
-                      <DropdownItem>Something else here</DropdownItem>
-                    </DropdownMenu>
-                  </ButtonDropdown>
-                </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
-              </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
-                <Line data={cardChartData2} options={cardChartOpts2} height={70} />
-              </div>
+            <CardHeader>{companyName[0]}</CardHeader>
+                <CardBody className="pb-0">
+                    <div className="text-value">111</div>
+                    <div>분당 처리수</div>
+                </CardBody>
+                <div className="chart-wrapper" style={{ height: '70px'}}>
+                    <Line data={cardChartData1} options={cardChartOpts1} height={70} />
+                </div>
+                <CardFooter className="text-white bg-info">미처리수<span class="card-header-actions">111</span></CardFooter>
             </Card>
           </Col>
 
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-primary">
-              <CardBody className="pb-0">
-                <ButtonGroup className="float-right">
-                  <Dropdown id='card2' isOpen={this.state.card2} toggle={() => { this.setState({ card2: !this.state.card2 }); }}>
-                    <DropdownToggle className="p-0" color="transparent">
-                      <i className="icon-location-pin"></i>
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>Action</DropdownItem>
-                      <DropdownItem>Another action</DropdownItem>
-                      <DropdownItem>Something else here</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
-              </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
-                <Line data={cardChartData1} options={cardChartOpts1} height={70} />
-              </div>
+            <CardHeader>{companyName[1]}</CardHeader>
+                <CardBody className="pb-0">
+                    <div className="text-value">222</div>
+                    <div>분당 처리수</div>
+                </CardBody>
+                <div className="chart-wrapper" style={{ height: '70px'}}>
+                    <Line data={cardChartData2} options={cardChartOpts2} height={70} />
+                </div>
+                <CardFooter className="text-white bg-primary">미처리수<span class="card-header-actions">222</span></CardFooter>
             </Card>
           </Col>
 
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-warning">
-              <CardBody className="pb-0">
-                <ButtonGroup className="float-right">
-                  <Dropdown id='card3' isOpen={this.state.card3} toggle={() => { this.setState({ card3: !this.state.card3 }); }}>
-                    <DropdownToggle caret className="p-0" color="transparent">
-                      <i className="icon-settings"></i>
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>Action</DropdownItem>
-                      <DropdownItem>Another action</DropdownItem>
-                      <DropdownItem>Something else here</DropdownItem>
-                    </DropdownMenu>
-                  </Dropdown>
-                </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
-              </CardBody>
-              <div className="chart-wrapper" style={{ height: '70px' }}>
-                <Line data={cardChartData3} options={cardChartOpts3} height={70} />
-              </div>
+                <CardHeader>{companyName[2]}</CardHeader>
+                <CardBody className="pb-0">
+                    <div className="text-value">333</div>
+                    <div>분당 처리수</div>
+                </CardBody>
+                <div className="chart-wrapper" style={{ height: '70px'}}>
+                    <Line data={cardChartData3} options={cardChartOpts3} height={70} />
+                </div>
+                <CardFooter className="text-white bg-warning">미처리수<span class="card-header-actions">333</span></CardFooter>
             </Card>
           </Col>
 
           <Col xs="12" sm="6" lg="3">
             <Card className="text-white bg-danger">
+              <CardHeader>{companyName[3]}</CardHeader>
               <CardBody className="pb-0">
-                <ButtonGroup className="float-right">
-                  <ButtonDropdown id='card4' isOpen={this.state.card4} toggle={() => { this.setState({ card4: !this.state.card4 }); }}>
-                    <DropdownToggle caret className="p-0" color="transparent">
-                      <i className="icon-settings"></i>
-                    </DropdownToggle>
-                    <DropdownMenu right>
-                      <DropdownItem>Action</DropdownItem>
-                      <DropdownItem>Another action</DropdownItem>
-                      <DropdownItem>Something else here</DropdownItem>
-                    </DropdownMenu>
-                  </ButtonDropdown>
-                </ButtonGroup>
-                <div className="text-value">9.823</div>
-                <div>Members online</div>
+                <div className="text-value">444</div>
+                <div>분당 처리수</div>
               </CardBody>
-              <div className="chart-wrapper mx-3" style={{ height: '70px' }}>
-                <Bar data={cardChartData4} options={cardChartOpts4} height={70} />
+              <div className="chart-wrapper" style={{ height: '70px'}}>
+                <Line data={cardChartData4} options={cardChartOpts4} height={70} />
               </div>
+              <CardFooter className="text-white bg-danger">미처리수<span class="card-header-actions">444</span></CardFooter>
             </Card>
           </Col>
+
+          <Col xs="12" sm="6" lg="3">
+            <Card className="text-white bg-success">
+              <CardHeader>{companyName[4]}</CardHeader>
+              <CardBody className="pb-0">
+                <div className="text-value">555</div>
+                <div>분당 처리수</div>
+              </CardBody>
+              <div className="chart-wrapper" style={{ height: '70px'}}>
+                <Line data={cardChartData5} options={cardChartOpts5} height={70} />
+              </div>
+              <CardFooter className="text-white bg-success">미처리수<span class="card-header-actions">555</span></CardFooter>
+            </Card>
+          </Col>
+
         </Row>
+
+
+
+        
         <Row>
           <Col>
             <Card>
